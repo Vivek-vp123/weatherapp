@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+        .center-form {
+            margin: 0 auto;
+            width: 50%; /* Adjust width as needed */
+        }
+        .header {
+            background: green;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="row header">
+        <h1 class="col-md-3 text-center">Weather</h1>
+    </nav>
+    <br>
+    <br>
+    <div class="row">
+        <form method="POST" class="center-form">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="text" class="form-control" name="city" placeholder="Search">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        {% if country_code and coordinate and temp and humidity %}
+        <div class="col-md-6 col-md-offset-3">
+            <h3>Country Code: {{ country_code }}</h3>
+            <h5>Coordinates: {{ coordinate }}</h5>
+            <h5>Temperature: {{ temp }}</h5>
+            <h5>Humidity: {{ humidity }}</h5>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
